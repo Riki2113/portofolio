@@ -3,16 +3,16 @@
 import Image from "next/image";
 
 const techs = [
-  { name: "Next.js",     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg" },
-  { name: "React",       logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" },
-  { name: "TypeScript",  logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" },
-  { name: "Tailwind CSS",logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" },
-  { name: "Laravel",     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/laravel/laravel-original.svg" },
-  { name: "PostgreSQL",  logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg" },
-  { name: "Figma",       logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg" },
-  { name: "Git",         logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" },
-  { name: "MySQL",       logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" },
-  { name: "JavaScript",  logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" },
+  { name: "Next.js",     logo: "https://cdn.simpleicons.org/nextdotjs/000000" },
+  { name: "React",       logo: "https://cdn.simpleicons.org/react/61DAFB" },
+  { name: "TypeScript",  logo: "https://cdn.simpleicons.org/typescript/3178C6" },
+  { name: "Tailwind CSS",logo: "https://cdn.simpleicons.org/tailwindcss/06B6D4" },
+  { name: "Laravel",     logo: "https://cdn.simpleicons.org/laravel/FF2D20" },
+  { name: "PostgreSQL",  logo: "https://cdn.simpleicons.org/postgresql/4169E1" },
+  { name: "Figma",       logo: "https://cdn.simpleicons.org/figma/F24E1E" },
+  { name: "Git",         logo: "https://cdn.simpleicons.org/git/F05032" },
+  { name: "MySQL",       logo: "https://cdn.simpleicons.org/mysql/4479A1" },
+  { name: "JavaScript",  logo: "https://cdn.simpleicons.org/javascript/F7DF1E" },
 ];
 
 export default function TechMarquee() {
@@ -23,8 +23,8 @@ export default function TechMarquee() {
       <div className="flex w-max animate-marquee">
         {doubled.map((tech, i) => (
           <div key={i} className="flex items-center gap-2 whitespace-nowrap pr-9">
-            <Image src={tech.logo} alt={tech.name} width={20} height={20} className="h-5 w-5 object-contain" />
-            <span className="text-sm font-semibold text-gray-500">{tech.name}</span>
+            <Image src={tech.logo} alt={tech.name} width={28} height={28} className="h-7 w-7 object-contain" style={{ imageRendering: 'crisp-edges' }} />
+            <span className="text-sm font-semibold text-gray-600">{tech.name}</span>
             <span className="ml-4 text-gray-300">·</span>
           </div>
         ))}
