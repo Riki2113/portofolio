@@ -40,7 +40,7 @@ export default function ProjectsSection() {
   return (
     <motion.section 
       id="proyek" 
-      className="bg-white px-8 pt-32 pb-20 md:px-16"
+      className="bg-white px-8 pt-20 pb-16 md:px-16"
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}

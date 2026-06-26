@@ -11,7 +11,7 @@ export default function AboutSection() {
   return (
     <motion.section 
       id="tentang" 
-      className="bg-white px-8 pt-32 pb-20 md:px-16"
+      className="bg-white px-8 pt-20 pb-12 md:px-16"
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
@@ -103,8 +103,8 @@ export default function AboutSection() {
         </div>
 
         {/* Keahlian Marquee */}
-        <div className="mt-20">
-          <h3 className="mb-8 text-center text-sm font-bold uppercase tracking-widest text-gray-400">
+        <div className="mt-12">
+          <h3 className="mb-6 text-center text-sm font-bold uppercase tracking-widest text-gray-400">
             {t("about.tech")}
           </h3>
           <div className="mx-auto max-w-4xl overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
