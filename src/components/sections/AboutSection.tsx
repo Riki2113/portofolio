@@ -11,19 +11,19 @@ export default function AboutSection() {
   return (
     <motion.section 
       id="tentang" 
-      className="bg-white px-8 pt-20 pb-12 md:px-16"
+      className="bg-white px-8 pt-32 pb-12 md:px-16"
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
       viewport={{ once: true }}
     >
       <div className="mx-auto max-w-5xl">
-        <div className="mb-12 text-center">
+        <div className="mb-8 text-center">
           <p className="mb-2 text-xs font-bold uppercase tracking-widest text-emerald-500">{t("about.subtitle")}</p>
           <h2 className="text-3xl font-extrabold text-gray-900 md:text-4xl">{t("about.title")}</h2>
         </div>
 
-        <div className="flex flex-col items-center gap-12 md:flex-row md:items-start md:gap-16">
+        <div className="flex flex-col items-center gap-10 md:flex-row md:items-start md:gap-12">
           {/* Foto Kiri */}
           <motion.div 
             className="relative h-80 w-80 shrink-0 md:h-96 md:w-96"
@@ -103,7 +103,7 @@ export default function AboutSection() {
         </div>
 
         {/* Keahlian Marquee */}
-        <div className="mt-12">
+        <div className="mt-8">
           <h3 className="mb-6 text-center text-sm font-bold uppercase tracking-widest text-gray-400">
             {t("about.tech")}
           </h3>
