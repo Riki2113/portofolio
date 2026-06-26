@@ -64,7 +64,7 @@ export default function ProjectsSection() {
           hidden: {}
         }}
       >
-        {projects.map((project, idx) => (
+        {projects.map((project) => (
           <motion.div
             key={project.id}
             variants={{
