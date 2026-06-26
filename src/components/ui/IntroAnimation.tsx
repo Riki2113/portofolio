@@ -17,7 +17,7 @@ const greetings = [
   { text: "Привет",    lang: "Русский",            flag: "ru" },
 ];
 
-const DURATION = 250;
+const DURATION = 1400;
 
 interface IntroAnimationProps {
   onFinish: () => void;
@@ -101,24 +101,30 @@ export default function IntroAnimation({ onFinish }: IntroAnimationProps) {
             alt={greetings[idx].lang}
             width={40}
             height={30}
-            className={`mb-1 rounded-sm object-cover transition-all duration-300 ${animState === "in"
-              ? "translate-y-0 opacity-100"
-              : "-translate-y-4 opacity-0"
-              }`}
+            className="mb-1 rounded-sm object-cover"
+            style={{
+              animation: animState === "in"
+                ? "fadeSlideUp 0.35s ease forwards"
+                : "fadeSlideDown 0.25s ease forwards"
+            }}
           />
           <p
-            className={`mb-3 text-xs font-semibold uppercase tracking-[3px] text-white/30 transition-all duration-300 ${animState === "in"
-              ? "translate-y-0 opacity-100"
-              : "-translate-y-3 opacity-0"
-              }`}
+            className="mb-3 text-xs font-semibold uppercase tracking-[3px] text-white/30"
+            style={{
+              animation: animState === "in"
+                ? "fadeSlideUp 0.35s ease forwards"
+                : "fadeSlideDown 0.25s ease forwards"
+            }}
           >
             {greetings[idx].lang}
           </p>
           <h1
-            className={`bg-gradient-to-r from-violet-400 via-pink-400 to-orange-400 bg-clip-text text-7xl font-extrabold text-transparent transition-all duration-300 md:text-8xl ${animState === "in"
-              ? "translate-y-0 opacity-100"
-              : "translate-y-4 opacity-0"
-              }`}
+            className="bg-gradient-to-r from-violet-400 via-pink-400 to-orange-400 bg-clip-text text-7xl font-extrabold text-transparent md:text-8xl"
+            style={{
+              animation: animState === "in"
+                ? "fadeSlideUp 0.35s ease forwards"
+                : "fadeSlideDown 0.25s ease forwards"
+            }}
           >
             {greetings[idx].text}
           </h1>
