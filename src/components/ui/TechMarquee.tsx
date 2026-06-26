@@ -1,16 +1,16 @@
 "use client";
 
 const techs = [
-  { name: "Next.js",     logo: "https://cdn.simpleicons.org/nextdotjs/000000" },
-  { name: "React",       logo: "https://cdn.simpleicons.org/react/61DAFB" },
-  { name: "TypeScript",  logo: "https://cdn.simpleicons.org/typescript/3178C6" },
-  { name: "Tailwind CSS",logo: "https://cdn.simpleicons.org/tailwindcss/06B6D4" },
-  { name: "Laravel",     logo: "https://cdn.simpleicons.org/laravel/FF2D20" },
-  { name: "PostgreSQL",  logo: "https://cdn.simpleicons.org/postgresql/4169E1" },
-  { name: "Figma",       logo: "https://cdn.simpleicons.org/figma/F24E1E" },
-  { name: "Git",         logo: "https://cdn.simpleicons.org/git/F05032" },
-  { name: "MySQL",       logo: "https://cdn.simpleicons.org/mysql/4479A1" },
-  { name: "JavaScript",  logo: "https://cdn.simpleicons.org/javascript/F7DF1E" },
+  { name: "Next.js",     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg" },
+  { name: "React",       logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" },
+  { name: "TypeScript",  logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" },
+  { name: "Tailwind CSS",logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" },
+  { name: "Laravel",     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/laravel/laravel-original.svg" },
+  { name: "PostgreSQL",  logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg" },
+  { name: "Figma",       logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg" },
+  { name: "Git",         logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" },
+  { name: "MySQL",       logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" },
+  { name: "JavaScript",  logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" },
 ];
 
 export default function TechMarquee() {
