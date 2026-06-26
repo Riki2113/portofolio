@@ -29,6 +29,22 @@ export default function IntroAnimation({ onFinish }: IntroAnimationProps) {
   const [done, setDone] = useState(false);
   const [progress, setProgress] = useState(0);
   const [visible, setVisible] = useState(true);
+  const [imagesReady, setImagesReady] = useState(false);
+
+  useEffect(() => {
+    const urls = greetings.map((g) => `https://flagcdn.com/w40/${g.flag}.png`);
+    Promise.all(
+      urls.map(
+        (url) =>
+          new Promise((resolve) => {
+            const img = new window.Image();
+            img.onload = resolve;
+            img.onerror = resolve;
+            img.src = url;
+          })
+      )
+    ).then(() => setImagesReady(true));
+  }, []);
 
   const goNext = useCallback(() => {
     setAnimState("out");
@@ -56,13 +72,20 @@ export default function IntroAnimation({ onFinish }: IntroAnimationProps) {
   }, [onFinish]);
 
   useEffect(() => {
-    if (done) return;
-    const timer = setTimeout(goNext, DURATION);
-    return () => clearTimeout(timer);
-  }, [idx, done, goNext]);
+    if (done) {
+      const timer = setTimeout(enter, 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [done, enter]);
 
   useEffect(() => {
-    if (done) return;
+    if (done || !imagesReady) return;
+    const timer = setTimeout(goNext, DURATION);
+    return () => clearTimeout(timer);
+  }, [idx, done, imagesReady, goNext]);
+
+  useEffect(() => {
+    if (done || !imagesReady) return;
     setProgress(0);
     const interval = setInterval(() => {
       setProgress((p) => {
@@ -71,7 +94,7 @@ export default function IntroAnimation({ onFinish }: IntroAnimationProps) {
       });
     }, 50);
     return () => clearInterval(interval);
-  }, [idx, done]);
+  }, [idx, done, imagesReady]);
 
   return (
     <div
@@ -79,12 +102,20 @@ export default function IntroAnimation({ onFinish }: IntroAnimationProps) {
         }`}
     >
       {/* Orbs */}
-      <div className="pointer-events-none absolute -left-20 -top-20 h-96 w-96 rounded-full bg-purple-600/20 blur-3xl" />
-      <div className="pointer-events-none absolute -bottom-16 -right-10 h-72 w-72 rounded-full bg-pink-600/15 blur-3xl" />
-      <div className="pointer-events-none absolute bottom-10 left-24 h-52 w-52 rounded-full bg-orange-500/10 blur-3xl" />
+      <div className="pointer-events-none absolute -left-20 -top-20 h-96 w-96 rounded-full bg-purple-600/20 blur-3xl hidden sm:block" />
+      <div className="pointer-events-none absolute -bottom-16 -right-10 h-72 w-72 rounded-full bg-pink-600/15 blur-3xl hidden sm:block" />
+      <div className="pointer-events-none absolute bottom-10 left-24 h-52 w-52 rounded-full bg-orange-500/10 blur-3xl hidden sm:block" />
+
+      {/* Loading Spinner */}
+      {!imagesReady && !done && (
+        <div className="flex flex-col items-center justify-center gap-4">
+          <div className="h-8 w-8 animate-spin rounded-full border-2 border-white/20 border-t-white/80" />
+          <p className="text-xs text-white/50 tracking-widest uppercase">Loading</p>
+        </div>
+      )}
 
       {/* Skip button */}
-      {!done && (
+      {!done && imagesReady && (
         <button
           onClick={skip}
           className="absolute right-6 top-6 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-semibold text-white/40 transition hover:bg-white/10 hover:text-white"
@@ -94,7 +125,7 @@ export default function IntroAnimation({ onFinish }: IntroAnimationProps) {
       )}
 
       {/* Greeting */}
-      {!done && (
+      {!done && imagesReady && (
         <div className="flex flex-col items-center text-center">
           <img
             src={`https://flagcdn.com/w40/${greetings[idx].flag}.png`}
@@ -102,7 +133,10 @@ export default function IntroAnimation({ onFinish }: IntroAnimationProps) {
             width={40}
             height={30}
             className="mb-1 rounded-sm object-cover"
+            loading="eager"
+            fetchPriority="high"
             style={{
+              willChange: "transform, opacity",
               animation: animState === "in"
                 ? "fadeSlideUp 0.35s ease forwards"
                 : "fadeSlideDown 0.25s ease forwards"
@@ -111,6 +145,7 @@ export default function IntroAnimation({ onFinish }: IntroAnimationProps) {
           <p
             className="mb-3 text-xs font-semibold uppercase tracking-[3px] text-white/30"
             style={{
+              willChange: "transform, opacity",
               animation: animState === "in"
                 ? "fadeSlideUp 0.35s ease forwards"
                 : "fadeSlideDown 0.25s ease forwards"
@@ -119,8 +154,9 @@ export default function IntroAnimation({ onFinish }: IntroAnimationProps) {
             {greetings[idx].lang}
           </p>
           <h1
-            className="bg-gradient-to-r from-violet-400 via-pink-400 to-orange-400 bg-clip-text text-7xl font-extrabold text-transparent md:text-8xl"
+            className="bg-gradient-to-r from-violet-400 via-pink-400 to-orange-400 bg-clip-text text-5xl sm:text-6xl font-extrabold text-transparent md:text-8xl"
             style={{
+              willChange: "transform, opacity",
               animation: animState === "in"
                 ? "fadeSlideUp 0.35s ease forwards"
                 : "fadeSlideDown 0.25s ease forwards"
@@ -146,20 +182,12 @@ export default function IntroAnimation({ onFinish }: IntroAnimationProps) {
           <p className="mb-8 mt-3 text-base text-white/40">
             Mari kenalan lebih jauh.
           </p>
-          <button
-            onClick={enter}
-            className="flex items-center gap-2 rounded-full bg-gradient-to-r from-violet-600 to-pink-600 px-8 py-3.5 text-sm font-bold text-white transition hover:opacity-90 active:scale-95"
-          >
-            Masuk
-            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-            </svg>
-          </button>
+
         </div>
       )}
 
       {/* Progress bar */}
-      {!done && (
+      {!done && imagesReady && (
         <div className="absolute bottom-0 left-0 h-[3px] w-full bg-white/5">
           <div
             className="h-full bg-gradient-to-r from-violet-500 via-pink-500 to-orange-500 transition-none"
