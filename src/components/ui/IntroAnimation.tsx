@@ -3,18 +3,18 @@
 import { useEffect, useState, useCallback } from "react";
 
 const greetings = [
-  { text: "Halo", lang: "Indonesia", flag: "🇮🇩" },
-  { text: "Hello", lang: "English", flag: "🇬🇧" },
-  { text: "こんにちは", lang: "日本語", flag: "🇯🇵" },
-  { text: "Bonjour", lang: "Français", flag: "🇫🇷" },
-  { text: "안녕하세요", lang: "한국어", flag: "🇰🇷" },
-  { text: "Hola", lang: "Español", flag: "🇪🇸" },
-  { text: "مرحبا", lang: "العربية", flag: "🇸🇦" },
-  { text: "Ciao", lang: "Italiano", flag: "🇮🇹" },
-  { text: "你好", lang: "中文", flag: "🇨🇳" },
-  { text: "Olá", lang: "Português", flag: "🇧🇷" },
-  { text: "Hallo", lang: "Deutsch", flag: "🇩🇪" },
-  { text: "Привет", lang: "Русский", flag: "🇷🇺" },
+  { text: "Halo",      lang: "Bahasa Indonesia", flag: "id" },
+  { text: "Hello",     lang: "English",           flag: "gb" },
+  { text: "こんにちは", lang: "日本語",             flag: "jp" },
+  { text: "Bonjour",   lang: "Français",           flag: "fr" },
+  { text: "안녕하세요", lang: "한국어",              flag: "kr" },
+  { text: "Hola",      lang: "Español",            flag: "es" },
+  { text: "مرحبا",     lang: "العربية",            flag: "sa" },
+  { text: "Ciao",      lang: "Italiano",           flag: "it" },
+  { text: "你好",       lang: "中文",               flag: "cn" },
+  { text: "Olá",       lang: "Português",          flag: "br" },
+  { text: "Hallo",     lang: "Deutsch",            flag: "de" },
+  { text: "Привет",    lang: "Русский",            flag: "ru" },
 ];
 
 const DURATION = 250;
@@ -96,14 +96,16 @@ export default function IntroAnimation({ onFinish }: IntroAnimationProps) {
       {/* Greeting */}
       {!done && (
         <div className="flex flex-col items-center text-center">
-          <div
-            className={`mb-1 text-4xl transition-all duration-300 ${animState === "in"
+          <img
+            src={`https://flagcdn.com/w40/${greetings[idx].flag}.png`}
+            alt={greetings[idx].lang}
+            width={40}
+            height={30}
+            className={`mb-1 rounded-sm object-cover transition-all duration-300 ${animState === "in"
               ? "translate-y-0 opacity-100"
               : "-translate-y-4 opacity-0"
               }`}
-          >
-            {greetings[idx].flag}
-          </div>
+          />
           <p
             className={`mb-3 text-xs font-semibold uppercase tracking-[3px] text-white/30 transition-all duration-300 ${animState === "in"
               ? "translate-y-0 opacity-100"
