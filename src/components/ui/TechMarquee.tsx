@@ -1,7 +1,5 @@
 "use client";
 
-import Image from "next/image";
-
 const techs = [
   { name: "Next.js",     logo: "https://cdn.simpleicons.org/nextdotjs/000000" },
   { name: "React",       logo: "https://cdn.simpleicons.org/react/61DAFB" },
@@ -23,7 +21,14 @@ export default function TechMarquee() {
       <div className="flex w-max animate-marquee">
         {doubled.map((tech, i) => (
           <div key={i} className="flex items-center gap-2 whitespace-nowrap pr-9">
-            <Image src={tech.logo} alt={tech.name} width={28} height={28} className="h-7 w-7 object-contain" style={{ imageRendering: 'crisp-edges' }} />
+            <img 
+              src={tech.logo} 
+              alt={tech.name} 
+              width={28} 
+              height={28}
+              style={{ imageRendering: 'crisp-edges' }}
+              className="h-7 w-7 object-contain"
+            />
             <span className="text-sm font-semibold text-gray-600">{tech.name}</span>
             <span className="ml-4 text-gray-300">·</span>
           </div>
