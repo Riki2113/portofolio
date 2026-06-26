@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
 import { useLanguage } from "@/context/LanguageContext";
 import { TranslationKey } from "@/lib/i18n";
@@ -37,6 +37,7 @@ const sectionColors: Record<string, string> = {
 
 export default function Navbar() {
   const [active, setActive] = useState("home");
+  const [menuOpen, setMenuOpen] = useState(false);
   const { lang, setLang, t, isTransitioning } = useLanguage();
   const isClickScrolling = useRef(false);
   const scrollTimeout = useRef<NodeJS.Timeout | null>(null);
@@ -91,8 +92,9 @@ export default function Navbar() {
   };
 
   return (
-    <motion.nav 
-      initial={{ y: -100, x: "-50%", opacity: 0 }}
+    <>
+      <motion.nav 
+        initial={{ y: -100, x: "-50%", opacity: 0 }}
       animate={{ y: 0, x: "-50%", opacity: 1 }}
       transition={{ duration: 0.5, delay: 0.5 }}
       className="fixed left-1/2 top-6 z-50 flex w-max -translate-x-1/2 items-center gap-4 rounded-full border border-gray-100/50 bg-white/80 px-3 py-2 shadow-[0_4px_24px_rgba(0,0,0,0.06)] backdrop-blur-md"
@@ -133,6 +135,21 @@ export default function Navbar() {
       </div>
       <div className="flex items-center gap-2">
         <button
+          onClick={() => setMenuOpen(!menuOpen)}
+          className="md:hidden flex h-9 w-9 items-center justify-center rounded-full text-gray-500 hover:bg-gray-100"
+          aria-label="Toggle menu"
+        >
+          {menuOpen ? (
+            <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          ) : (
+            <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          )}
+        </button>
+        <button
           onClick={() => setLang(lang === "ID" ? "EN" : "ID")}
           className="ml-2 flex items-center gap-1.5 rounded-full border border-gray-100 bg-gray-50/50 px-3 py-2 text-xs font-bold text-gray-500 transition hover:bg-gray-100 hover:text-gray-900"
           title="Ganti Bahasa / Switch Language"
@@ -153,6 +170,41 @@ export default function Navbar() {
           </span>
         </a>
       </div>
-    </motion.nav>
+      </motion.nav>
+
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            initial={{ y: "-100%" }}
+            animate={{ y: 0 }}
+            exit={{ y: "-100%" }}
+            transition={{ type: "spring", bounce: 0, duration: 0.4 }}
+            className="fixed left-0 right-0 top-0 z-40 flex flex-col bg-white pt-24 pb-6 px-6 shadow-xl border-b border-gray-100 md:hidden"
+          >
+            <div className="flex flex-col">
+              {navItems.map((item) => {
+                const isActive = active === item.id;
+                return (
+                  <a
+                    key={item.id}
+                    href={`#${item.id}`}
+                    onClick={(e) => {
+                      handleClick(item.id, e);
+                      setMenuOpen(false);
+                    }}
+                    className={`flex items-center gap-3 py-4 text-base font-medium border-b border-gray-50/50 last:border-0 ${
+                      isActive ? "text-blue-600" : "text-gray-700"
+                    }`}
+                  >
+                    {item.icon}
+                    {t(item.tKey as TranslationKey)}
+                  </a>
+                );
+              })}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 }

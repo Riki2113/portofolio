@@ -16,13 +16,12 @@ const techs = [
 ];
 
 export default function TechMarquee() {
-  // Gandakan array 10 kali agar cukup panjang menutupi layar ultrawide sekalipun
-  const multiplied = Array(10).fill(techs).flat();
+  const doubled = [...techs, ...techs];
 
   return (
     <div className="overflow-hidden bg-white py-4">
       <div className="flex w-max animate-marquee">
-        {multiplied.map((tech, i) => (
+        {doubled.map((tech, i) => (
           <div key={i} className="flex items-center gap-2 whitespace-nowrap pr-9">
             <Image src={tech.logo} alt={tech.name} width={20} height={20} className="h-5 w-5 object-contain" />
             <span className="text-sm font-semibold text-gray-500">{tech.name}</span>
