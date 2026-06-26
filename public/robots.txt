@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://rikiirawan.vercel.app/sitemap.xml
