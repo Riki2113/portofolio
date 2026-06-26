@@ -68,7 +68,7 @@ export const translations = {
     // Hero
     "hero.availability": "Available for collaboration",
     "hero.hello": "Hello, I'm",
-    "hero.desc": "A Fullstack Developer who loves building websites that are not only functional but also fun to look at. Specializing in Next.js, Laravel, and engaging UIs.",
+    "hero.desc": "A Fullstack Developer who loves building websites that are not only functional but also fun to look at.",
     "hero.btn.projects": "View Projects",
     "hero.btn.contact": "Contact Me",
     "hero.stat.projects": "Projects completed",
