@@ -3,21 +3,21 @@
 import { useEffect, useState, useCallback } from "react";
 
 const greetings = [
-  { text: "Halo",      lang: "Bahasa Indonesia", flag: "id" },
-  { text: "Hello",     lang: "English",           flag: "gb" },
-  { text: "こんにちは", lang: "日本語",             flag: "jp" },
-  { text: "Bonjour",   lang: "Français",           flag: "fr" },
-  { text: "안녕하세요", lang: "한국어",              flag: "kr" },
-  { text: "Hola",      lang: "Español",            flag: "es" },
-  { text: "مرحبا",     lang: "العربية",            flag: "sa" },
-  { text: "Ciao",      lang: "Italiano",           flag: "it" },
-  { text: "你好",       lang: "中文",               flag: "cn" },
-  { text: "Olá",       lang: "Português",          flag: "br" },
-  { text: "Hallo",     lang: "Deutsch",            flag: "de" },
-  { text: "Привет",    lang: "Русский",            flag: "ru" },
+  { text: "Halo", lang: "Bahasa Indonesia", flag: "id" },
+  { text: "Hello", lang: "English", flag: "gb" },
+  { text: "こんにちは", lang: "日本語", flag: "jp" },
+  { text: "Bonjour", lang: "Français", flag: "fr" },
+  { text: "안녕하세요", lang: "한국어", flag: "kr" },
+  { text: "Hola", lang: "Español", flag: "es" },
+  { text: "مرحبا", lang: "العربية", flag: "sa" },
+  { text: "Ciao", lang: "Italiano", flag: "it" },
+  { text: "你好", lang: "中文", flag: "cn" },
+  { text: "Olá", lang: "Português", flag: "br" },
+  { text: "Hallo", lang: "Deutsch", flag: "de" },
+  { text: "Привет", lang: "Русский", flag: "ru" },
 ];
 
-const DURATION = 1400;
+const DURATION = 300;
 
 interface IntroAnimationProps {
   onFinish: () => void;
